@@ -11,7 +11,7 @@ that's not large in some regards, it is large for one person.
 I've decided to start in an earlier point in Vim's history, when it was
 not as large as it is now. Unfortunately, going back too far means losing
 out on some of the features that have been implemented along the way. And
-while I don't know if it's been re-writing in the release history, there's
+while I don't know if it's been re-written in the release history, there's
 also the risk of starting before a major re-write.
 
 The sweet spot is going far enough back to where the code base is still small
@@ -51,5 +51,5 @@ builds successfully! I made some very minor changes and added a CMake build syst
 
 [See these changes on GitHub.](https://github.com/tay10r/greybeard-vim/tree/4c3ccb6e74956687713f8297db3e26c5e6ba6f07)
 
-The only downside is that it crashes when it runs! In the [next part](vim-rewrite-pt2.md), we'll
+The only downside is that it crashes when it runs! In the [next part](greybeard-vim-pt2.md), we'll
 go into the problem and solution for the crash.
