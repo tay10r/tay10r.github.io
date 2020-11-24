@@ -1,5 +1,5 @@
-Vim Rewrite Part 1
-==================
+Greybeard Vim Part 2
+====================
 
 ### Investigating the Crash
 
@@ -76,9 +76,11 @@ for either sandboxing or unit testing. Here's the base definition:
 
 ```cxx
 template <typename DerivedEnv>
-class Environment {
+class Environment
+{
 public:
-    std::string get_value(const std::string_view &) const;
+    std::string
+    get_value(const std::string_view &) const;
 };
 ```
 
@@ -90,14 +92,14 @@ was not the case, I would have chosen to return another `std::string_view`.
 In this patch, I've also opted to make the following unit tests for the environment variable expansion:
 
  - `$FOO/$BAR ` expands to `foo/bar ` when `FOO` is `foo` and `BAR` is `bar`.
- - `$ ` expands to `$ ` (test case from bash)
- - `$MISSING; ` expands to ` ;`
+ - `$ $FOO` expands to `$ foo` (test case from bash)
+ - `$MISSING$FOO` expands to `foo`
 
 ### Running Vim
 
 Now that I've fixed the write to read-only memory, Vim runs like a charm!
 
-[See these changes on GitHub](https://github.com/tay10r/greybeard-vim/tree/0ec7035dea531fdb9fe8b16dadcb757c98f5f3de)
+[See these changes on GitHub](https://github.com/tay10r/greybeard-vim/tree/2801b4a72e0c205ceb8b2f5ac0e36507645fd8fb)
 
 In the next part, I will go into setting up regression tests to make sure that
 any changes I make will not break Vim.

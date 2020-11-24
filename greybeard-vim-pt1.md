@@ -1,5 +1,5 @@
-Vim Rewrite Part 1
-==================
+Greybeard Vim Part 1
+====================
 
 ### Choosing a Starting Point
 
