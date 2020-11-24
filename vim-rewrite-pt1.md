@@ -1,5 +1,5 @@
-Part 1
-======
+Vim Rewrite Part 1
+==================
 
 ### Choosing a Starting Point
 
@@ -47,7 +47,9 @@ see how the code grows as the versions go on:
 
 It gets pretty large, pretty fast. I chose to go with version v1.24 because
 it was the first one to show some sort of support for UNIX. Thankfully, it
-builds successfully! But it crashes when it loads. In the next part, we'll
-go into the problem and solution for the crash.
+builds successfully! I made some very minor changes and added a CMake build system.
 
-[See it on GitHub](https://github.com/tay10r/greybeard-vim/tree/4c3ccb6e74956687713f8297db3e26c5e6ba6f07)
+[See these changes on GitHub.](https://github.com/tay10r/greybeard-vim/tree/4c3ccb6e74956687713f8297db3e26c5e6ba6f07)
+
+The only downside is that it crashes when it runs! In the [next part](vim-rewrite-pt2.md), we'll
+go into the problem and solution for the crash.
