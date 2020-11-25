@@ -1,5 +1,5 @@
-Greybeard Vim Part 1
-====================
+Retro Vim Part 1
+================
 
 ### Choosing a Starting Point
 

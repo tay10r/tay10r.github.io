@@ -1,5 +1,5 @@
-Greybeard Vim Part 2
-====================
+Retro Vim Part 2
+================
 
 ### Investigating the Crash
 
@@ -101,5 +101,5 @@ Now that I've fixed the write to read-only memory, Vim runs like a charm!
 
 [See these changes on GitHub](https://github.com/tay10r/greybeard-vim/tree/2801b4a72e0c205ceb8b2f5ac0e36507645fd8fb)
 
-In the next part, I will go into setting up regression tests to make sure that
-any changes I make will not break Vim.
+In the next part, I will be examining the entry point to get a better idea
+of what needs to be done to make the code reentrant and extensible.
