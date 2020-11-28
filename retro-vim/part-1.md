@@ -1,5 +1,10 @@
-Retro Vim Part 1
-================
+---
+title: Retro Vim Part 1
+layout: default
+---
+
+First Build
+===========
 
 ### Choosing a Starting Point
 
@@ -49,7 +54,7 @@ It gets pretty large, pretty fast. I chose to go with version v1.24 because
 it was the first one to show some sort of support for UNIX. Thankfully, it
 builds successfully! I made some very minor changes and added a CMake build system.
 
-[See these changes on GitHub.](https://github.com/tay10r/greybeard-vim/tree/4c3ccb6e74956687713f8297db3e26c5e6ba6f07)
+[See these changes on GitHub.](https://github.com/tay10r/retro-vim/tree/4c3ccb6e74956687713f8297db3e26c5e6ba6f07)
 
-The only downside is that it crashes when it runs! In the [next part](greybeard-vim-pt2.md), we'll
+The only downside is that it crashes when it runs! In the [next part](./part-2), we'll
 go into the problem and solution for the crash.

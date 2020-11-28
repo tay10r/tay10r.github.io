@@ -1,5 +1,10 @@
-Retro Vim Part 2
-================
+---
+title: Retro Vim Part 2
+layout: default
+---
+
+First Bug + Fix
+===============
 
 ### Investigating the Crash
 
@@ -66,28 +71,23 @@ roughly a hundred lines of source code to account for the fact that:
 What was left is a new function prototype of `expand_env`:
 
 ```cxx
-template <typename DerivedEnv>
-std::string
-expand_env(const std::string_view &input, const Environment<DerivedEnv> &env);
+template <typename char_type, typename environment>
+auto expand_env(const std::basic_string_view<char_type> &Input, const environment &Env) -> std::basic_string<char_type>;
 ```
 
-With this new function, we can use static polymorphism to create a custom environment
-for either sandboxing or unit testing. Here's the base definition:
+Where `Env` can be passed a string view and return something that `std::ostream` can print.
+For example:
 
 ```cxx
-template <typename DerivedEnv>
-class Environment
-{
-public:
-    std::string
-    get_value(const std::string_view &) const;
+auto Env = [](const std::string_view &Key) -> std::string_view {
+	if (Key == "HOME")
+		return "/home/tay10r";
+	else
+		return "";
 };
 ```
 
-I chose to dynamically allocate a string for the return value, because `std::getenv` returns
-a non-reentrant pointer. By copying the string returned by `std::getenv`, we avoid the risk of
-storing a copy of the return value and using it after a successive call to `std::getenv`. If this
-was not the case, I would have chosen to return another `std::string_view`.
+This is useful because we can mock the process environment when testing.
 
 In this patch, I've also opted to make the following unit tests for the environment variable expansion:
 
@@ -95,11 +95,10 @@ In this patch, I've also opted to make the following unit tests for the environm
  - `$ $FOO` expands to `$ foo` (test case from bash)
  - `$MISSING$FOO` expands to `foo`
 
+And an additional test to ensure that `vim::expand_env` works on `wchar_t` string literals.
+
 ### Running Vim
 
 Now that I've fixed the write to read-only memory, Vim runs like a charm!
 
-[See these changes on GitHub](https://github.com/tay10r/greybeard-vim/tree/2801b4a72e0c205ceb8b2f5ac0e36507645fd8fb)
-
-In the next part, I will be examining the entry point to get a better idea
-of what needs to be done to make the code reentrant and extensible.
+[See these changes on GitHub](https://github.com/tay10r/retro-vim/tree/f4aef1b9258640112b40527efbac94450d651087)
