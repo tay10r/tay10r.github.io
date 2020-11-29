@@ -70,7 +70,7 @@ roughly a hundred lines of source code to account for the fact that:
 
 What was left is a new function prototype of `expand_env`:
 
-```cxx
+```cpp
 template <typename char_type, typename environment>
 auto expand_env(const std::basic_string_view<char_type> &Input, const environment &Env) -> std::basic_string<char_type>;
 ```
@@ -78,7 +78,7 @@ auto expand_env(const std::basic_string_view<char_type> &Input, const environmen
 Where `Env` can be passed a string view and return something that `std::ostream` can print.
 For example:
 
-```cxx
+```cpp
 auto Env = [](const std::string_view &Key) -> std::string_view {
 	if (Key == "HOME")
 		return "/home/tay10r";
