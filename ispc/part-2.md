@@ -76,13 +76,15 @@ have template declarations all over the place. Here's what is looks like:
 template <typename TokenIterator>
 class Parser final {
 
+    /* ... */
+
     class FunctionDecl final {
     	Type returnType;
     	FunctionDeclarator declarator;
 	CompoundStmt body;
     };
 
-    using std::variant<FunctionDecl> TopLevelNode;
+    using std::variant<FunctionDecl, VariableDecl, StructDecl> TopLevelNode;
 
     class AST final {
         std::vector<TopLevelNode> nodes;
@@ -105,10 +107,15 @@ template <typename Derived, typename TokenIt>
 class FunctionDecl {
   public:
 
+    template <typename DerivedStmtVisitor>
+    auto VisitBody(StmtVisitor<DerivedStmtVisitor> &) const;
+
     template <typename DerivedTypeVisitor>
     auto VisitReturnType(TypeVisitor<DerivedTypeVisitor> &) const;
 
     auto GetName() const -> TokenIt;
+
+    /* ... */
 };
 
 template <typename DerivedVisitor>
@@ -116,6 +123,8 @@ class TopLevelASTVisitor {
   public:
     template <typename DerivedFunc, typename TokenIt>
     auto Visit(const FunctionDecl<DerivedFunc, TokenIt> &func);
+
+    /* ... */
 };
 
 template <typename TokenIt>
@@ -165,7 +174,14 @@ As with most template-heavy code, the downside is going to be build times.
 Also, anyone not familiar with CRTP is probably going to be confused when
 looking at the AST heirarachy. And lastly, template errors are a horror.
 
+I also wonder whether the type parameterization of the lexer is actually
+worth it, since most compilers only support UTF-8 and the benefits of smaller
+token types might be negligible.
+
 ### Conclusion
 
 I'm happy with the design and I think it'll hold up for the rest of my
-time working on this project.
+time working on this project. It's extremely nice having very loose coupling
+between the lexer and parser and reassuring to know that supporting a preprocessing
+phase won't invoke a rewrite. I'm really looking forward to seeing the implementation
+to completion.
