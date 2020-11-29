@@ -73,7 +73,7 @@ class that is parameterized by the token type, so that I don't
 have template declarations all over the place. Here's what is looks like:
 
 ```cpp
-template <typename TokenIterator, typename TokenIterator>
+template <typename TokenIterator>
 class Parser final {
 
     class FunctionDecl final {
