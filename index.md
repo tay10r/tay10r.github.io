@@ -4,6 +4,14 @@ title: main
 nav_order: 1
 ---
 
+### ISPC
+
+A series on writing a library for parsing ISPC code.
+
+ - [x] [Setting Up](ispc/part-1)
+ - [x] [Implementation Details](ispc/part-2)
+ - [ ] First Passing Tests
+
 ### Retro Vim
 
 A series on rewriting and older version of Vim. One problem with Vim is that,
